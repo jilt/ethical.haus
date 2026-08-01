@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Wing | Ethical SocialFi Blueprint</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --bg-dark: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 80%);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            background: linear-gradient(to right, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-top: 10px;
+            letter-spacing: 3px;
+            opacity: 0.8;
+        }
+
+        section {
+            padding: 100px 10%;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 30px;
+            border-left: 4px solid var(--neon-pink);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            border-bottom: 2px solid var(--neon-cyan);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .highlight { color: var(--neon-cyan); font-weight: bold; }
+
+        .roadmap-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-list li {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 1px solid var(--neon-cyan);
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="three-canvas"></canvas>
+
+    <header>
+        <h1>Neon Wing</h1>
+        <div class="subtitle">Interstellar Cruiser | Transparent Financial Rails</div>
+        <p style="max-width: 600px; margin-top: 40px; line-height: 1.6; opacity: 0.7;">
+            Transforming high-signal Farcaster interactions into fair, transparent financial gains through a "social → DeFi" pipeline.
+        </p>
+    </header>
+
+    <section id="vision">
+        <h2>The Vision</h2>
+        <p>Combining the <span class="highlight">Farcaster social graph</span> with Neynar quality scores and 1inch/hummingbot execution to create censorship-resistant creator economies [1, 4].</p>
+        <div class="grid">
+            <div class="card">
+                <h3>Open Data</h3>
+                <p>Postgres hot cache for sub-10ms queries and Filecoin cold archive for data sovereignty [1, 2].</p>
+            </div>
+            <div class="card">
+                <h3>Quality Ranking</h3>
+                <p>Neynar Score > 80. Structural anti-spam by design, focusing on trusted, non-spammy accounts [1, 5].</p>
+            </div>
+            <div class="card">
+                <h3>DeFi Execution</h3>
+                <p>1inch Aggregation & Hummingbot Arbitrage for MEV-aware, gasless Fusion swaps [1, 6].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="identity">
+        <div style="display: flex; gap: 50px; flex-wrap: wrap; align-items: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2>Agent Identity</h2>
+                <p>Utilizing the <span class="highlight">ERC-8004 Standard</span> for verifiable on-chain reputation. Our Content Agent NFT carries capabilities, endpoints, and an interaction history [7, 8].</p>
+                <p><strong>Benefit:</strong> Users verify agent ethics before engaging. Trust is on-chain, not promised [7].</p>
+            </div>
+            <div class="card" style="flex: 1; border-color: var(--neon-cyan);">
+                <h3 style="color: var(--neon-cyan);">System Overview</h3>
+                <p>Farcaster Casts &rarr; Neynar Webhooks &rarr; DB Replicator &rarr; ERC-8004 Agent Replies &rarr; Mini App Trading &rarr; Rewards [9].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap">
+        <h2>Roadmap</h2>
+        <ul class="roadmap-list">
+            <li><span class="highlight">Phase 1:</span> Launch Postgres/Filecoin hybrid data layer and Neynar agent [10].</li>
+            <li><span class="highlight">Phase 2:</span> Release 1inch/hummingbot Mini App on Base/OP & mint ERC-8004 agent identity [10].</li>
+            <li><span class="highlight">Phase 3:</span> Full integration of Creatorcoin/Buildercoin streaming rails & token launch with Uniswap v4 hook [10, 11].</li>
+        </ul>
+        <div class="card" style="margin-top: 40px;">
+            <p><strong>Year 1 Target:</strong> ~$120k ARR driven by execution fees, API subscriptions (z.ai), and content rewards [3, 12].</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 198X ORION SYSTEMS LTD. ALL RIGHTS RESERVED. | NEON NotebookLM
+    </footer>
+
+    <script>
+        // --- THREE.JS BACKGROUND ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Cyber Grid
+        const gridHelper = new THREE.GridHelper(200, 50, 0xff00ff, 0x00ffff);
+        gridHelper.position.y = -5;
+        scene.add(gridHelper);
+
+        // Starfield
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff });
+        const starVertices = [];
+        for (let i = 0; i < 5000; i++) {
+            starVertices.push(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000));
+        }
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        camera.position.z = 30;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            gridHelper.rotation.y += 0.001;
+            stars.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- CSS TRANSITION OBSERVER ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
