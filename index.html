@@ -1,240 +1,1166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Wing | Ethical SocialFi Blueprint</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-pink: #ff00ff;
-            --neon-cyan: #00ffff;
-            --bg-dark: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            background: var(--bg-dark);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        #three-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 80%);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            background: linear-gradient(to right, var(--neon-pink), var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--neon-cyan);
-            margin-top: 10px;
-            letter-spacing: 3px;
-            opacity: 0.8;
-        }
-
-        section {
-            padding: 100px 10%;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--glass);
-            padding: 30px;
-            border-left: 4px solid var(--neon-pink);
-            backdrop-filter: blur(10px);
-            border-radius: 4px;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-pink);
-            border-bottom: 2px solid var(--neon-cyan);
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-
-        .highlight { color: var(--neon-cyan); font-weight: bold; }
-
-        .roadmap-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .roadmap-list li {
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 1px solid var(--neon-cyan);
-        }
-
-        footer {
-            padding: 50px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ethical Haus is a social finance hub exploring transparent creator rewards, on-chain identity, and ethical agent-driven finance." />
+  <meta name="keywords" content="ethical haus, social finance, creator rewards, memecoin, ERC-8004, Farcaster, blockchain, crypto" />
+  <meta name="author" content="Ethical Haus" />
+  <meta property="og:title" content="Ethical Haus — Social Finance Hub" />
+  <meta property="og:description" content="Ethical Haus Farcaster mini apps, blending social signals, transparent rails, and community rewards." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./background.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Ethical Haus — Social Finance Hub" />
+  <meta property="twitter:description" content="Ethical Haus Farcaster mini apps, blending social signals, transparent rails, and community rewards." />
+  <meta property="twitter:image" content="./social-preview.png" />
+  <title>Ethical Haus — Social Finance Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div id="main-hub">
+    <div class="hero-media" id="hero-image"></div>
+    <a class="site-brand" href="#" aria-label="Ethical Haus home">
+      <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <rect x="8" y="8" width="20" height="20" class="mark"></rect>
+        <rect x="36" y="8" width="20" height="20" class="mark"></rect>
+        <rect x="8" y="36" width="20" height="20" class="mark"></rect>
+        <rect x="36" y="36" width="20" height="20" class="mark"></rect>
+        <path d="M28 16 L28 48" class="mark"></path>
+        <path d="M16 28 L48 28" class="mark"></path>
+      </svg>
+    </a>
+    <nav class="team-menu" aria-label="Team links">
+      <a href="https://jeeltcraft.com" target="_blank">Dev</a>
+      <a href="https://www.linkedin.com/in/ekram-abdelrahim-2594aa393/" target="_blank">Social</a>
+      <a href="https://linktree.io/ethicalhaus" target="_blank">Apps</a>
+    </nav>
 
-    <canvas id="three-canvas"></canvas>
+    <div class="hero-card">
+      <p class="eyebrow">SocialFi App</p>
+      <br />
+      <h1 class="glitch-title glitch-cyan" data-text="ETHICAL.HAUS">ethical.haus    </h1>
+      <p class="hero-copy">
+        Our agent mapps social finance quality trading signals to distribute community rewards for token creators and builders.
+      </p>
+      <div class="hero-meta">
+        <span id="link-main-cyan" class="pill neon-link" onclick="openPage('page-hub')">Creator rewards</span>
+        <span id="link-pink-vertical" class="pill neon-link" onclick="openPage('page-erc')">On-chain trust</span>
+        <span id="link-pink-left" class="pill neon-link" onclick="openPage('page-rewards')">Transparent rails</span>
+      </div>
+    </div>
 
-    <header>
-        <h1>Neon Wing</h1>
-        <div class="subtitle">Interstellar Cruiser | Transparent Financial Rails</div>
-        <p style="max-width: 600px; margin-top: 40px; line-height: 1.6; opacity: 0.7;">
-            Transforming high-signal Farcaster interactions into fair, transparent financial gains through a "social → DeFi" pipeline.
-        </p>
-    </header>
+    <div class="scroll-indicator" onclick="scrollToRoadmap()" aria-label="Scroll to roadmap">↓</div>
 
-    <section id="vision">
-        <h2>The Vision</h2>
-        <p>Combining the <span class="highlight">Farcaster social graph</span> with Neynar quality scores and 1inch/hummingbot execution to create censorship-resistant creator economies [1, 4].</p>
-        <div class="grid">
-            <div class="card">
-                <h3>Open Data</h3>
-                <p>Postgres hot cache for sub-10ms queries and Filecoin cold archive for data sovereignty [1, 2].</p>
-            </div>
-            <div class="card">
-                <h3>Quality Ranking</h3>
-                <p>Neynar Score > 80. Structural anti-spam by design, focusing on trusted, non-spammy accounts [1, 5].</p>
-            </div>
-            <div class="card">
-                <h3>DeFi Execution</h3>
-                <p>1inch Aggregation & Hummingbot Arbitrage for MEV-aware, gasless Fusion swaps [1, 6].</p>
-            </div>
-        </div>
-    </section>
+  </div>
 
-    <section id="identity">
-        <div style="display: flex; gap: 50px; flex-wrap: wrap; align-items: center;">
-            <div style="flex: 1; min-width: 300px;">
-                <h2>Agent Identity</h2>
-                <p>Utilizing the <span class="highlight">ERC-8004 Standard</span> for verifiable on-chain reputation. Our Content Agent NFT carries capabilities, endpoints, and an interaction history [7, 8].</p>
-                <p><strong>Benefit:</strong> Users verify agent ethics before engaging. Trust is on-chain, not promised [7].</p>
-            </div>
-            <div class="card" style="flex: 1; border-color: var(--neon-cyan);">
-                <h3 style="color: var(--neon-cyan);">System Overview</h3>
-                <p>Farcaster Casts &rarr; Neynar Webhooks &rarr; DB Replicator &rarr; ERC-8004 Agent Replies &rarr; Mini App Trading &rarr; Rewards [9].</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap">
+  <section id="roadmap" class="roadmap-section">
+    <div class="section-shell">
+      <div class="section-heading">
         <h2>Roadmap</h2>
+        <p>A clearer path from signal capture to reward distribution, designed to feel more readable and less visually noisy.</p>
+      </div>
+
+      <div class="roadmap-card">
         <ul class="roadmap-list">
-            <li><span class="highlight">Phase 1:</span> Launch Postgres/Filecoin hybrid data layer and Neynar agent [10].</li>
-            <li><span class="highlight">Phase 2:</span> Release 1inch/hummingbot Mini App on Base/OP & mint ERC-8004 agent identity [10].</li>
-            <li><span class="highlight">Phase 3:</span> Full integration of Creatorcoin/Buildercoin streaming rails & token launch with Uniswap v4 hook [10, 11].</li>
+          <li><span class="highlight">Phase 1:</span> Launch Postgres/Filecoin hybrid data layer and start Neynar agent testing.</li>
+          <li><span class="highlight">Phase 2:</span> Release multichain trading Mini App and mint ERC-8004 agent identity.</li>
+          <li><span class="highlight">Phase 3:</span> Full integration of multichain Creatorcoin/Buildercoin streaming rails and reward distribution.</li>
         </ul>
-        <div class="card" style="margin-top: 40px;">
-            <p><strong>Year 1 Target:</strong> ~$120k ARR driven by execution fees, API subscriptions (z.ai), and content rewards [3, 12].</p>
+
+        <div class="roadmap-highlight-card">
+          <p><strong>Year 1 Target:</strong> ~$120k ARR driven by execution fees, API subscriptions, and community rewards.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        &copy; 198X ORION SYSTEMS LTD. ALL RIGHTS RESERVED. | NEON NotebookLM
-    </footer>
+  <section id="tech-stack" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
 
-    <script>
-        // --- THREE.JS BACKGROUND ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
 
-        // Cyber Grid
-        const gridHelper = new THREE.GridHelper(200, 50, 0xff00ff, 0x00ffff);
-        gridHelper.position.y = -5;
-        scene.add(gridHelper);
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
 
-        // Starfield
-        const starGeometry = new THREE.BufferGeometry();
-        const starMaterial = new THREE.PointsMaterial({ color: 0xffffff });
-        const starVertices = [];
-        for (let i = 0; i < 5000; i++) {
-            starVertices.push(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000));
-        }
-        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-        const stars = new THREE.Points(starGeometry, starMaterial);
-        scene.add(stars);
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
 
-        camera.position.z = 30;
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="xion" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Xion Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
 
-        function animate() {
-            requestAnimationFrame(animate);
-            gridHelper.rotation.y += 0.001;
-            stars.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-        }
-        animate();
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
 
-        // --- CSS TRANSITION OBSERVER ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
 
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="vara" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Vara Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="vinuchain" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Vinuchain Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="q402" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Q402 Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="yellow" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Yellow Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="bitcoin" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Bitcoin Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="starknet" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Starknet Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="base" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Base network Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="kite" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Kite AI Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="uniswap" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Uniswap V4 Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="cowswap" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>CowSwap Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="injective" class="tech-stack-section">
+    <div class="section-shell">
+      <div class="section-heading">
+        <h2>Ninja Tech Stack</h2>
+        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <nav class="stack-menu" aria-label="Tech stack navigation">
+          <button class="stack-button active" type="button" data-target="stack-data">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-identity">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-execution">
+          </button>
+          <button class="stack-button" type="button" data-target="stack-rewards">
+          </button>
+        </nav>
+        <div class="stack-panel">
+          <article id="stack-data" class="stack-card active">
+            <div class="card-body">
+              <h3>Data Layer</h3>
+              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
+              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
+              <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
+              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+            </div>
+          </article>
+
+          <article id="stack-identity" class="stack-card">
+            <div class="card-body">
+              <h3>Identity Layer</h3>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
+              <div class="stack-square"><strong>Profile</strong>Agent NFT</div>
+              <div class="stack-square"><strong>History</strong>Interaction Log</div>
+              <div class="stack-square"><strong>Proof</strong>ERC-8004 State</div>
+              <div class="stack-square"><strong>Access</strong>Permission Gate</div>
+            </div>
+          </article>
+
+          <article id="stack-execution" class="stack-card">
+            <div class="card-body">
+              <h3>Execution Layer</h3>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
+              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Execute</strong>Swap Module</div>
+              <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
+              <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
+            </div>
+          </article>
+
+          <article id="stack-rewards" class="stack-card">
+            <div class="card-body">
+              <h3>Reward Layer</h3>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+            </div>
+            <div class="stack-flow">
+              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Match</strong>Reward Rules</div>
+              <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
+              <div class="stack-square"><strong>Send</strong>Token Transfer</div>
+              <div class="stack-square"><strong>Track</strong>Ledger View</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="page-hub" class="subpage">
+    <div class="subpage-card">
+      <p class="eyebrow">Ethical Guardrails</p>
+      <h1 class="glitch-title glitch-cyan" data-text="TRANSPARENT FINANCE">Transparent Finance</h1>
+      <div class="card-body">
+        <h3>Creatorcoins & Buildercoins Terminal</h3>
+        <p>Transforming high-signal Farcaster interactions into fair, transparent financial gains through our social finance decentralized trading pipeline. <br /><br /><strong>The deployer is no more the only one that earns.</strong></p>
+      </div>
+      <button class="back-btn" onclick="closePages()">← Back to Hub</button>
+    </div>
+  </div>
+
+  <div id="page-erc" class="subpage">
+    <div class="subpage-card">
+      <p class="eyebrow">Feedback Ready</p>
+      <h1 class="glitch-title glitch-pink" data-text="ERC-8004 STANDARD">ERC-8004 Standard</h1>
+      <div class="card-body">
+        <h3>Agent Identity</h3>
+        <p>We choose a <span class="highlight">standard</span> for verifiable on-chain agent reputation. Our content agent NFT carries provable capabilities, endpoints, and interaction history.</p>
+        <p><strong> Users can verify agent ethics before engaging.</strong></p>
+      </div>
+      <br />
+      <h4 style="margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em;">User Flow</h4>
+      <div class="flow-diagram">
+        <div class="flow-step"><strong>Farcaster</strong>Quality user casts</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>ERC-8004</strong>agent replies</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Community</strong>opts in</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Mini App</strong>trades</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><strong>Rewards</strong>for groups or user</div>
+      </div>
+
+      <button class="back-btn" onclick="closePages()">← Back to Hub</button>
+    </div>
+  </div>
+
+  <div id="page-rewards" class="subpage">
+    <div class="subpage-card">
+      <p class="eyebrow">Community layer</p>
+      <h1 class="glitch-title glitch-pink" data-text="COMMUNITY ENGAGEMENT REWARDS">Community Engagement Rewards</h1>
+      <div class="card-body">
+        <h3>The Vision</h3>
+        <p>Combining the <span class="highlight">Farcaster social graph</span> with Neynar quality scores and crosschain execution to foster censorship-resistant creator economies.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Open data</h3>
+          <p>Postgres hot cache for fast reads and Filecoin for archival data sovereignty.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Quality ranking</h3>
+          <p>Neynar ranking helps reduce spam and engagement farming, a trustless infra to reward meaningful content.</p>
+        </div>
+        <div class="feature-card">
+          <h3>DeFi execution</h3>
+          <p>interchain execution and atomic trades within the boundaries of decentralized finance ethics and mechanics.</p>
+        </div>
+      </div>
+
+      <button class="back-btn" onclick="closePages()">← Back to Hub</button>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script src="./routing.js"></script>
 </body>
 </html>
