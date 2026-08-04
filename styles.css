@@ -638,6 +638,16 @@ body[data-route-section="tech-stack"] .tech-stack-section {
   text-align: center;
 }
 
+.flow-step img {
+  display: block;
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 .flow-step strong {
   display: block;
   margin-bottom: 0.25rem;

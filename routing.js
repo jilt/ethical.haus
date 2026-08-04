@@ -5,14 +5,12 @@ function showSection(section) {
     'vara',
     'vinuchain',
     'q402',
-    'yellow',
     'bitcoin',
     'starknet',
     'base',
     'kite',
     'uniswap',
-    'cowswap',
-    'injective'
+    'cowswap'
   ];
 
   const sections = document.querySelectorAll('.tech-stack-section');
@@ -30,9 +28,10 @@ function showSection(section) {
 }
 
 function handleRouteFromLocation() {
-  const hash = window.location.hash.replace('#', '').trim();
-  showSection(hash || 'home');
+  const params = new URLSearchParams(window.location.search);
+  const section = params.get('section') || 'home';
+  showSection(section);
 }
 
 document.addEventListener('DOMContentLoaded', handleRouteFromLocation);
-window.addEventListener('hashchange', handleRouteFromLocation);
+window.addEventListener('popstate', handleRouteFromLocation);
