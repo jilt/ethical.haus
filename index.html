@@ -549,7 +549,7 @@
     <div class="section-shell">
       <div class="section-heading">
         <h2>Base network Tech Stack</h2>
-        <p>Toggle the core layers to reveal the building blocks behind the product flow.</p>
+        <p>Base should be the ERC-8004 agent orchestration and reward-settlement layer, while the actual trading path stays multichain through 1inch Fusion+/cross-chain hummingbot routing.</p>
       </div>
 
       <div class="tech-stack-grid">
@@ -567,21 +567,21 @@
           <article id="stack-data-base" class="stack-card active">
             <div class="card-body">
               <h3>Data Layer</h3>
-              <p>Fast reads, durable storage, and high-signal event streams power every downstream decision.</p>
+              <p>Social signals from Farcaster flow into the MiniApp, where verified interactions, transaction receipts, and execution history are stored in a durable Filecoin archive with the Postgres live cache for fast reads. The agent reputation remains on-chain.</p>
             </div>
             <div class="stack-flow">
               <div class="stack-square"><strong>Input</strong>Farcaster Events</div>
-              <div class="stack-square"><strong>Capture</strong>Webhook Sync</div>
+              <div class="stack-square"><strong>Capture</strong>Neynar Webhook Sync</div>
               <div class="stack-square"><strong>Store</strong>Postgres Cache</div>
               <div class="stack-square"><strong>Archive</strong>Filecoin Node</div>
-              <div class="stack-square"><strong>Output</strong>Signal Index</div>
+              <div class="stack-square"><strong>Output</strong>Feedback signal Index</div>
             </div>
           </article>
 
           <article id="stack-identity-base" class="stack-card">
             <div class="card-body">
               <h3>Identity Layer</h3>
-              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust.</p>
+              <p>Agent identity and reputation are verifiable, portable, and aligned to user trust. Base acts as the agent orchestration layer, where ERC-8004-style identity, reputation, and validation records live, we will rely on this data for weekly improvements in the social interaction quality measurements. The agent wallet has allowance for our 1inch API and hummingbot routing execution.</p>
             </div>
             <div class="stack-flow">
               <div class="stack-square"><strong>Identity</strong>Wallet Auth</div>
@@ -595,11 +595,11 @@
           <article id="stack-execution-base" class="stack-card">
             <div class="card-body">
               <h3>Execution Layer</h3>
-              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent.</p>
+              <p>Routing, quoting, and execution logic keep flows efficient while staying transparent. 1inch handles the multichain trade path, including atomic or intent-based routing. Protocol fees and rewards are settled on base and Hummingbot is the fallback.</p>
             </div>
             <div class="stack-flow">
               <div class="stack-square"><strong>Plan</strong>Intent Engine</div>
-              <div class="stack-square"><strong>Route</strong>Aggregator</div>
+              <div class="stack-square"><strong>Route</strong>Route Aggregator</div>
               <div class="stack-square"><strong>Execute</strong>Swap Module</div>
               <div class="stack-square"><strong>Monitor</strong>MEV Shield</div>
               <div class="stack-square"><strong>Confirm</strong>Receipt Log</div>
@@ -609,10 +609,10 @@
           <article id="stack-rewards-base" class="stack-card">
             <div class="card-body">
               <h3>Reward Layer</h3>
-              <p>Community incentives are distributed through programmable rails that can be audited and tuned.</p>
+              <p>Community incentives are distributed through programmable rails that can be audited and tuned. Base is where reward settlement, attribution, and payout logic should live. The system can compute rewards from verified interactions, route them through agent rules, and settle them on-chain while keeping receipts and proofs archived in Filecoin.</p>
             </div>
             <div class="stack-flow">
-              <div class="stack-square"><strong>Score</strong>Signal Weight</div>
+              <div class="stack-square"><strong>Score</strong>Effective Yield</div>
               <div class="stack-square"><strong>Match</strong>Reward Rules</div>
               <div class="stack-square"><strong>Split</strong>Distribution Logic</div>
               <div class="stack-square"><strong>Send</strong>Token Transfer</div>

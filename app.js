@@ -95,20 +95,20 @@ const sectionContentMap = {
   },
   base: {
     roadmap: [
-      { label: 'Phase 1', text: 'Target low-cost onchain actions and fast user feedback loops.' },
-      { label: 'Phase 2', text: 'Expand the reward engine to support quicker payout cadence and lighter execution costs.' },
-      { label: 'Phase 3', text: 'Use Base as the default venue for growth experiments and broader onboarding.' }
+       { label: 'Phase 1', text: 'Launch Postgres/Filecoin hybrid data layer and start agent testing on base.' },
+      { label: 'Phase 2', text: 'Release multichain trading social webapp and mint ERC-8004 agent identity on base.' },
+      { label: 'Phase 3', text: 'Full integration of multichain trading rails and reward distribution on base.' }
     ],
     modal: {
-      eyebrow: 'Base-native rails',
-      title: 'Base Reward Flow',
-      titleText: 'BASE REWARD FLOW',
-      heading: 'Fast, low-cost incentives',
-      body: 'Base makes the reward story feel immediate, affordable, and easy to onboard into, so community participation can happen with less friction.',
+      eyebrow: 'community layer',
+      title: 'Community Routing Rewards',
+      titleText: 'COMMUNITY ROUTING REWARDS',
+      heading: 'The vision',
+      body: 'A blueprint for fostering meaningful censorship resistant creator economies on base: open source infra empowering verifiable multi-chain social finance trading.',
       features: [
-        { title: 'Low-cost execution', text: 'Actions can be routed cheaply so more of the reward stays with the community.' },
-        { title: 'Fast feedback', text: 'Payouts and experiments can be iterated quickly without adding heavy operational overhead.' },
-        { title: 'Scalable onboarding', text: 'The experience stays approachable for new creators and participants entering the flow.' }
+        { title: 'Trustless Agent', text: 'ERC-8004-style identity, reputation, and validation records keep the agent layer auditable.' },
+        { title: 'Multichain', text: '1inch/hummingbot allow cross-chain atomic execution path for each trade.' },
+        { title: 'Filecoin Storage', text: 'Preserve transaction receipts and user interactions for long-term auditability.' }
       ]
     }
   },
