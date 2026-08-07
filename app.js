@@ -61,7 +61,7 @@ const sectionContentMap = {
       features: [
         {
           title: 'Native agent coordination',
-          text: 'Vara’s Gear-based runtime supports fast, low-cost execution, delayed messages, and signless or payless transaction patterns.'
+          text: 'Vara’s Gear-based runtime supports fast cheap execution, using delayed messages, signless and payless transaction patterns.'
         },
         {
           title: 'Portability',
